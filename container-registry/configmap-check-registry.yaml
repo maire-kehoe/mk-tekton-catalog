@@ -59,7 +59,6 @@ data:
     ##########################################################################
     # Environment variables:
     # - IBMCLOUD_API (input)
-    # - IBMCLOUD_RESOURCE_GROUP (input)
     # - REGISTRY_REGION (input)
     # - REGISTRY_NAMESPACE (input)
     # - REGISTRY_CREATE_NAMESPACE (input)
@@ -70,9 +69,6 @@ data:
     # ibmcloud login
     ibmcloud config --check-version false
     ibmcloud login -a $IBMCLOUD_API --no-region --apikey $API_KEY
-    if [ "$IBMCLOUD_RESOURCE_GROUP" ]; then
-      ibmcloud target -g "$IBMCLOUD_RESOURCE_GROUP"
-    fi
 
     # Log container registry to the appropriate region
     if ibmcloud cr region-set $REGISTRY_REGION > /dev/null 2>&1; then

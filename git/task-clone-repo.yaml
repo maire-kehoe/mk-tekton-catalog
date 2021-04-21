@@ -20,7 +20,7 @@ spec:
         to use the git token obtained from the authorization flow when adding the git integration in the toolchain
       default: ""
     - name: resource-group
-      description: target resource group (name or id) for the ibmcloud login operation
+      description: "Deprecated, unused. Was: target resource group (name or id) for the ibmcloud login operation"
       default: ""
     - name: repository
       description: the git repo url
@@ -147,9 +147,6 @@ spec:
           echo "Fetching token for $REPOSITORY"
           ibmcloud config --check-version false
           ibmcloud login -a $(params.ibmcloud-api) --no-region --apikey $API_KEY
-          if [ "$(params.resource-group)" ]; then
-            ibmcloud target -g "$(params.resource-group)"
-          fi
           TOKEN=$(ibmcloud iam oauth-tokens --output JSON | jq -r '.iam_token')
           GIT_TOKEN_URL=$(jq -r --arg git_repo "$REPOSITORY" \
             '.services[] | select (.parameters.repo_url==$git_repo) | .parameters.token_url' \

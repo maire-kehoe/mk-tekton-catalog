@@ -15,7 +15,7 @@ spec:
       description: field in the secret that contains the api key used to login to ibmcloud container registry
       default: apikey
     - name: resource-group
-      description: target resource group (name or id) for the ibmcloud login operation
+      description: "Deprecated, unused. Was: target resource group (name or id) for the ibmcloud login operation"
       default: ""
     - name: registry-create-namespace
       description: create container registry namespace if it doesn't already exists
@@ -98,8 +98,6 @@ spec:
               key: $(params.container-registry-apikey-secret-key)
         - name: IBMCLOUD_API
           value: $(params.ibmcloud-api)
-        - name: IBMCLOUD_RESOURCE_GROUP
-          value: $(params.resource-group)
         - name: REGISTRY_CREATE_NAMESPACE
           value: $(params.registry-create-namespace)
       command: ["/bin/bash", "-c"]
